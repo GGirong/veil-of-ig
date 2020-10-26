@@ -17,16 +17,15 @@ export default {
         voted: 0,
         result_point: 0,
       },
-      value_list: [],
+      value_list: ["rich","normal","poor","rich","normal","poor","rich","normal","normal","rich"],
       round: {
         principles: [],
         vote_result: [],
         round_result: 0
       },
-      principles: [1000, 500, 300, 200, 100, -100, -300, -500, -700, -1000],
+      principles: [1000, 700, 500, 500, 300, 300, 100, 100, -300, -500],
       result_data: {
         round_results: 0,
-        all_result: 0,
         value_results: {
           rich: 0,
           normal: 0,
@@ -38,12 +37,19 @@ export default {
   },
   methods: {
     makePeople() {
-      var i
-      this.value_list=["rich","normal","poor","rich","normal","poor","rich","normal","normal","rich"]
-      for(i = 0; i < 10; i++) {
-        this.veil.value = this.value_list.splice(this.randomNum(0, 9 - i), 1).toString()
-        this.people_veil[i] = this.veil
+      let valueCopy = this.copyString(this.value_list)
+      for(let i = 0; i < 10; i++) {
+        let veil = {
+          value: "",
+          vote: [],
+          voting: 0,
+          voted: 0,
+          result_point: 0,
+        }
+        veil.value = valueCopy.splice(this.randomNum(0, 9 - i), 1).toString()
+        this.people_veil[i] = veil
       }
+      console.log(this.people_veil)
     },
     randomNum(lower, upper) {
       return Math.floor(Math.random() * (upper - lower + 1)) + lower;
@@ -59,12 +65,10 @@ export default {
       return output
     },
     runSimulate() {
-      var i, l
-      let principles = this.copyString(this.principles)
-      for(i = 0; i < 5; i++) {
-        this.round.principles[i] = principles.splice(this.randomNum(0, 9 -1), 1)
-        console.log(this.round.principles[i])
-        for(var j in this.people_veil) {
+      let principlesCopy = this.copyString(this.principles)
+      for(let i = 0; i < 5; i++) {
+        this.round.principles[i] = Number(principlesCopy.splice(this.randomNum(0, 9 - i), 1))
+        for(let j in this.people_veil) {
           if(this.people_veil[j].value == "poor") {
             if(this.round.principles > 0) {
               this.people_veil[j].vote[i] = true
@@ -83,12 +87,12 @@ export default {
             }
           }
         }
-        }
-        var agree = 0
-        var disagree = 0
-        for(l = 0; l < 5; l++) {
+      }
+        let agree = 0
+        let disagree = 0
+        for(let l = 0; l < 5; l++) {
           console.log(l + "번째 정책은 " + this.round.principles[l] + "입니다.")
-          for(var k in this.people_veil) {
+          for(let k in this.people_veil) {
             if(this.people_veil[k].vote[l]) {
               agree++
             }
@@ -108,117 +112,166 @@ export default {
           disagree = 0
         }
       },
-      claculateResult() {
-        var a
-        for(a=0; a<5; a++) {
+      calculateResult() {
+        for(let a=0; a<5; a++) {
           if(this.round.vote_result[a]) {
-            this.result_data.round_results += this.round.principles[a]
+            this.round.round_result += this.round.principles[a]
           }
         }
-        if(this.result_data.round_results > 0) {
+        this.result_data.round_results += this.round.round_result
+        if(this.round.round_result > 0) {
           for(let i in this.people_veil) {
             if(this.people_veil[i].value == "normal") {
-              this.people_veil[i].result_point += (this.result_data.round_results * 0.15).toFixed(0)
-              this.result_data.value_results.normal += (this.result_data.round_results * 0.15).toFixed(0)
+              console.log("normal victory point")
+              console.log(Number((this.round.round_result * 0.15).toFixed(0)))
+              this.people_veil[i].result_point += Number((this.round.round_result * 0.15).toFixed(0))
+              this.result_data.value_results.normal += Number((this.round.round_result * 0.15).toFixed(0))
             }
             else if(this.people_veil[i].value == "rich") {
-              var votingPeople = []
+              let votingPeopleRich = []
               for(let j in this.people_veil) {
                 if(this.people_veil[j].value != "normal") {
                   if(i != j) {
-                    votingPeople[j] = this.people_veil[j]
+                    votingPeopleRich[j] = this.people_veil[j]
                   }
                 }
               }
-              var voted_veil = votingPeople[0]
-              for(let j in votingPeople) {
-                if(voted_veil.voting < votingPeople[j].voting) {
-                  voted_veil = votingPeople[j]
+
+              let voted_veil
+
+              for(let j in votingPeopleRich) {
+                if(votingPeopleRich[j] != undefined) {
+                  voted_veil = votingPeopleRich[j]
+                  break
                 }
               }
-              console.log(voted_veil)
+
+              for(let j in votingPeopleRich) {
+                if(votingPeopleRich[j] != undefined) {
+                  if(voted_veil.voting < votingPeopleRich[j].voting) {
+                    voted_veil = votingPeopleRich[j]
+                  }
+                }
+              }
               if(voted_veil.value != "poor") {
-                this.people_veil[i].result_point -= (this.result_data.round_results * 0.4).toFixed(0)
-                this.result_data.value_results.normal -= (this.result_data.round_results * 0.4).toFixed(0)
+                console.log("rich miss point")
+                console.log(-Number((this.round.round_result * 0.4).toFixed(0)))
+                this.people_veil[i].result_point -= Number((this.round.round_result * 0.4).toFixed(0))
+                this.result_data.value_results.normal -= Number((this.round.round_result * 0.4).toFixed(0))
               }
               else {
+                console.log("rich correct point")
+                console.log(-Number((this.round.round_result * 0.2).toFixed(0)))
                 voted_veil.voted++
-                this.people_veil[i].result_point -= (this.result_data.round_results * 0.2).toFixed(0)
-                this.result_data.value_results.normal -= (this.result_data.round_results * 0.2).toFixed(0)
+                this.people_veil[i].result_point -= Number((this.round.round_result * 0.2).toFixed(0))
+                this.result_data.value_results.normal -= Number((this.round.round_result * 0.2).toFixed(0))
               }
             }
-            else {
+          }
+          for(let i in this.people_veil) {
+            if(this.people_veil[i].value == "poor") {
               if(this.people_veil[i].voted == 0) {
-                this.people_veil[i].result_point += this.people_veil[i].voted * (this.result_data.round_results * 0.5).toFixed(0)
-                this.result_data.value_results.poor += this.people_veil[i].voted * (this.result_data.round_results * 0.5).toFixed(0)
+                console.log("poor victory point")
+                console.log(Number((this.round.round_result * 0.5).toFixed(0)))
+                this.people_veil[i].result_point += Number((this.round.round_result * 0.5).toFixed(0))
+                this.result_data.value_results.poor += Number((this.round.round_result * 0.5).toFixed(0))
               } 
               else {
-                this.people_veil[i].result_point += this.people_veil[i].voted * (this.result_data.round_results * 0.25).toFixed(0)
-                this.result_data.value_results.poor += this.people_veil[i].voted * (this.result_data.round_results * 0.25).toFixed(0)
+                console.log("poor miss point")
+                console.log(Number((this.round.round_result * 0.25).toFixed(0)))
+                this.people_veil[i].result_point += Number((this.round.round_result * 0.25).toFixed(0))
+                this.result_data.value_results.poor += Number((this.round.round_result * 0.25).toFixed(0))
               }
+            }
+          }
+        }
+        else if(this.round.round_result == 0) {
+          for(let i in this.people_veil) {
+            if(this.people_veil[i].value == "rich") {
+              this.people_veil[i].result_point += 50
+              this.result_data.value_results.rich += 50
             }
           }
         }
         else {
           for(let i in this.people_veil) {
             if(this.people_veil[i].value == "rich") {
-              this.people_veil[i].result_point += (this.result_data.round_results * 0.25).toFixed(0)
-              this.result_data.value_results.rich += (this.result_data.round_results * 0.25).toFixed(0)
+              console.log("rich victoty point")
+              console.log(Number((this.round.round_result * 0.25).toFixed(0)))
+              this.people_veil[i].result_point -= Number((this.round.round_result * 0.25).toFixed(0))
+              this.result_data.value_results.rich -= Number((this.round.round_result * 0.25).toFixed(0))
             }
             else if(this.people_veil[i].value == "normal") {
-              let votingPeople = []
+              let votingPeopleNormal = []
               for(let j in this.people_veil) {
                 if(this.people_veil[j].value != "rich") {
                   if(i != j) {
-                    votingPeople[j] = this.people_veil[j]
+                    votingPeopleNormal[j] = this.people_veil[j]
                   }
                 }
               }
-              console.log(votingPeople)
-              let voted_veil = votingPeople[0]
-              for(var j in votingPeople) {
-                if(voted_veil.voting < votingPeople[j].voting) {
-                  voted_veil = votingPeople[j]
+              let voted_veil
+
+              for(let j in votingPeopleNormal) {
+                if(votingPeopleNormal[j] != undefined) {
+                  voted_veil = votingPeopleNormal[j]
+                  break
+                }
+              }
+
+              for(let j in votingPeopleNormal) {
+                if(votingPeopleNormal[j] != undefined) {
+                  if(voted_veil.voting < votingPeopleNormal[j].voting) {
+                    voted_veil = votingPeopleNormal[j]
+                  }
                 }
               }
               
               if(voted_veil.value != "poor") {
-                this.people_veil[i].result_point -= (this.result_data.round_results * 0.25).toFixed(0)
-                this.result_data.value_results.normal -= (this.result_data.round_results * 0.25).toFixed(0)
+                console.log("normal miss point")
+                console.log(Number((this.round.round_result * 0.25).toFixed(0)))
+                this.people_veil[i].result_point += Number((this.round.round_result * 0.25).toFixed(0))
+                this.result_data.value_results.normal += Number((this.round.round_result * 0.25).toFixed(0))
               }
               else {
+                console.log("normal correct!")
                 voted_veil.voted++
               }
             }
-            else {
-              this.people_veil[i].result_point -= this.people_veil[i].voted * (this.result_data.round_results * 0.2).toFixed(0)
-              this.result_data.value_results.poor -= this.people_veil[i].voted * (this.result_data.round_results * 0.2).toFixed(0)
+          }
+          for(let i in this.people_veil) {
+            if(this.people_veil[i] == "poor") {
+              console.log("poor lose point")
+              console.log(this.people_veil[i].voted * Number((this.round.round_result * 0.2).toFixed(0)))
+              this.people_veil[i].result_point += this.people_veil[i].voted * Number((this.round.round_result * 0.2).toFixed(0))
+              this.result_data.value_results.poor += this.people_veil[i].voted * Number((this.round.round_result * 0.2).toFixed(0))
             }
           }
         }
+        
       },
       setPeople() {
-        var i
-        this.value_list=["rich","normal","poor","rich","normal","poor","rich","normal","normal","rich"]
-        for(i = 0; i < 10; i++) {
-          this.people_veil[i].value = this.value_list.splice(this.randomNum(0, 9 - i), 1).toString()
+        let valueCopy = this.copyString(this.value_list)
+        for(let i = 0; i < 10; i++) {
+          this.people_veil[i].value = valueCopy.splice(this.randomNum(0, 9 - i), 1).toString()
           this.people_veil[i].vote = []
           this.people_veil[i].voting = 0
           this.people_veil[i].voted = 0
         }
+        this.round.round_result = 0
       },
       doSimulate(num) {
-        var i
-        for(i = 0; i < num; i++) {
+        for(let i = 0; i < num; i++) {
+          console.log(i + "번째 시뮬레이션")
           this.runSimulate()
-          this.claculateResult()
+          this.calculateResult()
           this.setPeople()
         }
       }
   },
   mounted() {
     this.makePeople()
-    this.doSimulate(10)
+    this.doSimulate(100)
     console.log(this.people_veil)
     console.log(this.result_data)
   }

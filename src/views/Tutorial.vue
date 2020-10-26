@@ -6,7 +6,7 @@
           Veil of Ignorance
         </kinesis-element>
         <div class="start-button" @click="startTutorial">Start</div>
-        <a class="login-button">Login</a>
+        <a class="login-button">Skip tutorial</a>
         <kinesis-element
           class="child child_one"
           tag="img"
@@ -46,8 +46,7 @@
       </kinesis-container>
     </div>
     <div v-if="!firstIn" class="tutorial-comp" @click="nextIndex">
-      <Page1 v-if="index < 25" :index="index" @preindex="preIndex" />
-      <Page2 v-if="24 < index" :index="index" />
+      <Page1 :index="index" @preindex="preIndex" />
     </div>
     <loading
       :active.sync="isLoading"
@@ -71,7 +70,6 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 
 import Page1 from "../../src/components/Page1";
-import Page2 from "../../src/components/Page2";
 
 export default {
   components: {
@@ -79,7 +77,6 @@ export default {
     KinesisElement,
     Loading,
     Page1,
-    Page2,
   },
   name: "Tutorial",
   data() {
@@ -117,7 +114,16 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Grandstander&display=swap");
+.tutorial-container {
+  width: 100vw;
+  height: 100vh;
+}
 .tutorial-comp {
+  width: 100%;
+  height: 100%;
+}
+.start-comp {
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
 }
@@ -132,9 +138,15 @@ export default {
   color: #000;
 }
 .parent {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
+}
+.start-comp-size {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 .start-title {
   font-family: "Grandstander", cursive;
@@ -166,8 +178,8 @@ export default {
   color: rgba(20, 20, 20) !important;
   position: absolute;
   font-size: 32px;
-  top: calc(50vh + 20px);
-  left: calc(50vw - 43px);
+  top: calc(50vh + 40px);
+  left: calc(50vw - 93px);
   cursor: pointer;
 }
 .child {
@@ -177,41 +189,28 @@ export default {
 }
 .child_one {
   top: calc(60vh);
-  left: calc(10vw);
+  left: calc(5vw);
 }
 .child_two {
   top: calc(60vh);
-  left: calc(25vw);
+  left: calc(20vw);
 }
 .child_three {
   width: 230px;
   top: calc(60vh);
-  left: calc(40vw);
+  left: calc(35vw);
 }
 .child_four {
   top: calc(60vh);
-  left: calc(55vw);
+  left: calc(50vw);
 }
 .child_five {
   width: 210px;
   top: calc(60vh);
-  left: calc(70vw);
+  left: calc(65vw);
 }
 .child_six {
   top: calc(60vh);
-  left: calc(85vw);
-}
-
-.tutorial-container {
-  max-width: none;
-  max-height: 100%;
-  min-width: 100%;
-  min-height: 100%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background-color: rgba(0, 0, 0, 0.8);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translateX(-50%) translateY(-50%);
+  left: calc(80vw);
 }
 </style>

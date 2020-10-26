@@ -1,117 +1,129 @@
 <template>
   <div class="page-container">
     <div class="page-image-container">
-      <font-awesome-icon
-        icon="arrow-left"
-        style="font-size: 48px; position: absolute; top: 50px; left: 25px; color: #ddd; cursor: pointer"
-        @click="$emit('preindex')"
-      />
+      <div class="icon-container">
+        <font-awesome-icon
+          icon="arrow-left"
+          style="font-size: 48px; color: #ddd; cursor: pointer"
+          @click="$emit('preindex')"
+        />
+      </div>
       <!-------         뒤로가기 버튼          --------->
-      <img
-        src="../../src/assets/gg_cross.png"
-        class="gg-image"
-        v-if="
-          index != 1 &&
-            index != 4 &&
-            index != 7 &&
-            index != 8 &&
-            index != 10 &&
-            index != 15
-        "
-      />
-      <img
-        src="../../src/assets/gg_explain.png"
-        class="gg-image"
-        v-if="
-          index == 1 ||
-            index == 4 ||
-            index == 7 ||
-            index == 8 ||
-            index == 10 ||
-            index == 15
-        "
-      />
+      <div class="gg-image-wrapper">
+        <div class="gg-image-container">
+          <img
+            src="../../src/assets/gg_cross.png"
+            class="gg-image"
+            v-if="
+              index != 1 &&
+                index != 4 &&
+                index != 7 &&
+                index != 8 &&
+                index != 10 &&
+                index != 15
+            "
+          />
+          <img
+            src="../../src/assets/gg_explain.png"
+            class="gg-image"
+            v-if="
+              index == 1 ||
+                index == 4 ||
+                index == 7 ||
+                index == 8 ||
+                index == 10 ||
+                index == 15
+            "
+          />
+        </div>
+      </div>
+      
       <!-------         초상화 이미지          --------->
-      <img
-        src="../../src/assets/page1_1.png"
-        class="page-image-1"
-        v-if="index == 0"
-      />
-      <img
-        src="../../src/assets/page1_2.png"
-        class="page-image-2"
-        v-if="index == 1"
-      />
-      <img
-        src="../../src/assets/page1_3.png"
-        class="page-image-3"
-        v-if="index == 2"
-      />
-      <img
-        src="../../src/assets/page1_4.png"
-        class="page-image-4"
-        v-if="index == 3"
-      />
-      <img
-        src="../../src/assets/page1_5.jpg"
-        class="page-image-5"
-        v-if="index == 4 || index == 5"
-      />
-      <img
-        src="../../src/assets/page1_6.png"
-        class="page-image-6"
-        v-if="index == 6 || index == 7 || index == 8"
-      />
-      <img
-        src="../../src/assets/page1_7.png"
-        class="page-image-7"
-        v-if="index == 9"
-      />
-      <img
-        src="../../src/assets/page1_8.png"
-        class="page-image-8"
-        v-if="index == 10"
-      />
-      <img
-        src="../../src/assets/page1_9.png"
-        class="page-image-9"
-        v-if="index == 11"
-      />
-      <img
-        src="../../src/assets/page1_10.jpg"
-        class="page-image-10"
-        v-if="index == 12"
-      />
-      <img
-        src="../../src/assets/page1_11.png"
-        class="page-image-10"
-        v-if="index == 13"
-      />
-      <img
-        src="../../src/assets/page1_12.png"
-        class="page-image-10"
-        v-if="index == 14"
-      />
-      <img
-        src="../../src/assets/page1_13.png"
-        class="page-image-10"
-        v-if="index == 15"
-      />
-      <img
-        src="../../src/assets/page1_14.png"
-        class="page-image-10"
-        v-if="index == 16"
-      />
-      <img
-        src="../../src/assets/page1_15.jpg"
-        class="page-image-11"
-        v-if="index == 17"
-      />
-      <img
-        src="../../src/assets/page1_16.jpg"
-        class="page-image-10"
-        v-if="index > 17 && index < 25"
-      />
+      <div class="main-image-wrapper">
+        <div class="main-image-container">
+          <img
+            src="../../src/assets/page1_1.png"
+            class="page-image-1"
+            v-if="index == 0"
+          />
+          <img
+            src="../../src/assets/page1_2.png"
+            class="page-image-1"
+            v-if="index == 1"
+          />
+          <img
+            src="../../src/assets/page1_3.png"
+            class="page-image-1"
+            v-if="index == 2"
+          />
+          <img
+            src="../../src/assets/page1_4.png"
+            class="page-image-1"
+            v-if="index == 3"
+          />
+          <img
+            src="../../src/assets/page1_5.jpg"
+            class="page-image-1"
+            v-if="index == 4 || index == 5"
+          />
+          <img
+            src="../../src/assets/page1_6.png"
+            class="page-image-1"
+            v-if="index == 6 || index == 7 || index == 8"
+          />
+          <img
+            src="../../src/assets/page1_7.png"
+            class="page-image-1"
+            v-if="index == 9"
+          />
+          <img
+            src="../../src/assets/page1_8.png"
+            class="page-image-1"
+            v-if="index == 10"
+          />
+          <img
+            src="../../src/assets/page1_9.png"
+            class="page-image-1"
+            v-if="index == 11"
+          />
+          <img
+            src="../../src/assets/page1_10.jpg"
+            class="page-image-1"
+            v-if="index == 12"
+          />
+          <img
+            src="../../src/assets/page1_11.png"
+            class="page-image-1"
+            v-if="index == 13"
+          />
+          <img
+            src="../../src/assets/page1_12.png"
+            class="page-image-1"
+            v-if="index == 14"
+          />
+          <img
+            src="../../src/assets/page1_13.png"
+            class="page-image-1"
+            v-if="index == 15"
+          />
+          <img
+            src="../../src/assets/page1_14.png"
+            class="page-image-1"
+            v-if="index == 16"
+          />
+          <img
+            src="../../src/assets/page1_15.jpg"
+            class="page-image-1"
+            v-if="index == 17"
+          />
+          <img
+            src="../../src/assets/page1_16.jpg"
+            class="page-image-1"
+            v-if="index > 17 && index < 25"
+          /> 
+        </div>
+      </div>
+      
     </div>
     <div class="page-text-container">
       <transition name="slide-fade" mode="out-in">
@@ -151,18 +163,58 @@ export default {
 
 .page-container {
   position: relative;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.page-image-container {
+  height: 65%;
+  display: flex;
+  flex-direction: row;
+}
+.icon-container {
+  width: 5%;
+  padding-top: 30px;
+}
+.gg-image-wrapper {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.gg-image-container {
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
 }
 .gg-image {
-  width: 650px;
   position: absolute;
-  top: 300px;
+  top: 0px;
   left: 0px;
+  right: 0px;
+  bottom: 0px;
+  max-width: 100%;
+  height: auto;
+}
+.main-image-wrapper {
+  width: 35%;
+}
+.main-image-container {
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
 }
 .page-image-1 {
-  width: 650px;
   position: absolute;
-  top: 150px;
-  left: 900px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  max-width: 100%;
+  height: auto;
 }
 .page-image-2 {
   width: 850px;
@@ -225,16 +277,14 @@ export default {
 .page-text-container {
   background-color: rgba(30, 30, 30);
   border-radius: 50px 50px 0 0;
-  position: fixed;
-  bottom: 0px;
   width: 100%;
-  height: 35vh;
+  height: 35%;
+  min-height: 350px;
   display: table;
-  padding-left: 70px;
-  padding-right: 70px;
+  text-align: center;
 }
 .page-text {
-  font-size: 42px;
+  font-size: 32px;
   line-height: 54px;
   color: #fff;
   display: table-cell;

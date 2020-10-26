@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="width: 100%; height: 100%">
+  <div id="app" class="no-drag">
     <Tutorial />
   </div>
 </template>
@@ -23,4 +23,12 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.no-drag {
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none; 
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  user-select:none;
+}
+
 </style>
