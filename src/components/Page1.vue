@@ -11,7 +11,8 @@
       <!-------         뒤로가기 버튼          --------->
       <div class="gg-image-wrapper">
         <div class="gg-image-container">
-          <img
+          <transition-group name="fade" tag="div">
+            <img
             src="../../src/assets/gg_cross.png"
             class="gg-image"
             v-if="
@@ -22,6 +23,7 @@
                 index != 10 &&
                 index != 15
             "
+            key="0"
           />
           <img
             src="../../src/assets/gg_explain.png"
@@ -34,7 +36,9 @@
                 index == 10 ||
                 index == 15
             "
+            key="1"
           />
+          </transition-group>
         </div>
       </div>
       
@@ -52,13 +56,13 @@
               src="../../src/assets/page1_2.png"
               class="page-image-1"
               key="1"
-              v-if="index == 1"
+              v-if="false"
             />
             <img
               src="../../src/assets/page1_3.png"
               class="page-image-1"
               key="2"
-              v-if="index == 2"
+              v-if="false"
             />
             <img
               src="../../src/assets/page1_4.png"
@@ -67,7 +71,7 @@
               v-if="index == 3"
             />
             <img
-              src="../../src/assets/page1_5.jpg"
+              src="../../src/assets/page1_5.png"
               class="page-image-1"
               v-if="index == 4 || index == 5"
               key="4"
@@ -82,61 +86,61 @@
               src="../../src/assets/page1_7.png"
               class="page-image-1"
               key="6"
-              v-if="index == 9"
+              v-if="false"
             />
             <img
               src="../../src/assets/page1_8.png"
               class="page-image-1"
-              v-if="index == 10"
+              v-if="false"
               key="7"
             />
             <img
               src="../../src/assets/page1_9.png"
               class="page-image-1"
               key="8"
-              v-if="index == 11"
+              v-if="false"
             />
             <img
               src="../../src/assets/page1_10.jpg"
               class="page-image-1"
-              v-if="index == 12"
+              v-if="false"
               key="9"
             />
             <img
               src="../../src/assets/page1_11.png"
               class="page-image-1"
-              v-if="index == 13"
+              v-if="false"
               key="10"
             />
             <img
               src="../../src/assets/page1_12.png"
               class="page-image-1"
-              v-if="index == 14"
+              v-if="false"
               key="11"
             />
             <img
               src="../../src/assets/page1_13.png"
               class="page-image-1"
-              v-if="index == 15"
+              v-if="false"
               key="12"
             />
             <img
               src="../../src/assets/page1_14.png"
               class="page-image-1"
-              v-if="index == 16"
+              v-if="false"
               key="13"
             />
             <img
               src="../../src/assets/page1_15.jpg"
               class="page-image-1"
               key="14"
-              v-if="index == 17"
+              v-if="false"
             />
             <img
               src="../../src/assets/page1_16.jpg"
               class="page-image-1"
               key="15"
-              v-if="index > 17 && index < 25"
+              v-if="false"
             />
           </transition-group>
         </div>
@@ -186,7 +190,7 @@ export default {
   opacity: 0;
 }
 .fade-enter-active {
-  transition: opacity .5s;
+  transition: opacity 2s;
 }
 .page-container {
   position: relative;
