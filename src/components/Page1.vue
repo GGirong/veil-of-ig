@@ -41,86 +41,104 @@
       <!-------         초상화 이미지          --------->
       <div class="main-image-wrapper">
         <div class="main-image-container">
-          <img
-            src="../../src/assets/page1_1.png"
-            class="page-image-1"
-            v-if="index == 0"
-          />
-          <img
-            src="../../src/assets/page1_2.png"
-            class="page-image-1"
-            v-if="index == 1"
-          />
-          <img
-            src="../../src/assets/page1_3.png"
-            class="page-image-1"
-            v-if="index == 2"
-          />
-          <img
-            src="../../src/assets/page1_4.png"
-            class="page-image-1"
-            v-if="index == 3"
-          />
-          <img
-            src="../../src/assets/page1_5.jpg"
-            class="page-image-1"
-            v-if="index == 4 || index == 5"
-          />
-          <img
-            src="../../src/assets/page1_6.png"
-            class="page-image-1"
-            v-if="index == 6 || index == 7 || index == 8"
-          />
-          <img
-            src="../../src/assets/page1_7.png"
-            class="page-image-1"
-            v-if="index == 9"
-          />
-          <img
-            src="../../src/assets/page1_8.png"
-            class="page-image-1"
-            v-if="index == 10"
-          />
-          <img
-            src="../../src/assets/page1_9.png"
-            class="page-image-1"
-            v-if="index == 11"
-          />
-          <img
-            src="../../src/assets/page1_10.jpg"
-            class="page-image-1"
-            v-if="index == 12"
-          />
-          <img
-            src="../../src/assets/page1_11.png"
-            class="page-image-1"
-            v-if="index == 13"
-          />
-          <img
-            src="../../src/assets/page1_12.png"
-            class="page-image-1"
-            v-if="index == 14"
-          />
-          <img
-            src="../../src/assets/page1_13.png"
-            class="page-image-1"
-            v-if="index == 15"
-          />
-          <img
-            src="../../src/assets/page1_14.png"
-            class="page-image-1"
-            v-if="index == 16"
-          />
-          <img
-            src="../../src/assets/page1_15.jpg"
-            class="page-image-1"
-            v-if="index == 17"
-          />
-          <img
-            src="../../src/assets/page1_16.jpg"
-            class="page-image-1"
-            v-if="index > 17 && index < 25"
-          /> 
+          <transition-group name="fade" tag="div">
+            <img
+              src="../../src/assets/page1_1.png"
+              key="0"
+              class="page-image-1"
+              v-if="index == 0"
+            />
+            <img
+              src="../../src/assets/page1_2.png"
+              class="page-image-1"
+              key="1"
+              v-if="index == 1"
+            />
+            <img
+              src="../../src/assets/page1_3.png"
+              class="page-image-1"
+              key="2"
+              v-if="index == 2"
+            />
+            <img
+              src="../../src/assets/page1_4.png"
+              class="page-image-1"
+              key="3"
+              v-if="index == 3"
+            />
+            <img
+              src="../../src/assets/page1_5.jpg"
+              class="page-image-1"
+              v-if="index == 4 || index == 5"
+              key="4"
+            />
+            <img
+              src="../../src/assets/page1_6.png"
+              class="page-image-1"
+              key="5"
+              v-if="index == 6 || index == 7 || index == 8"
+            />
+            <img
+              src="../../src/assets/page1_7.png"
+              class="page-image-1"
+              key="6"
+              v-if="index == 9"
+            />
+            <img
+              src="../../src/assets/page1_8.png"
+              class="page-image-1"
+              v-if="index == 10"
+              key="7"
+            />
+            <img
+              src="../../src/assets/page1_9.png"
+              class="page-image-1"
+              key="8"
+              v-if="index == 11"
+            />
+            <img
+              src="../../src/assets/page1_10.jpg"
+              class="page-image-1"
+              v-if="index == 12"
+              key="9"
+            />
+            <img
+              src="../../src/assets/page1_11.png"
+              class="page-image-1"
+              v-if="index == 13"
+              key="10"
+            />
+            <img
+              src="../../src/assets/page1_12.png"
+              class="page-image-1"
+              v-if="index == 14"
+              key="11"
+            />
+            <img
+              src="../../src/assets/page1_13.png"
+              class="page-image-1"
+              v-if="index == 15"
+              key="12"
+            />
+            <img
+              src="../../src/assets/page1_14.png"
+              class="page-image-1"
+              v-if="index == 16"
+              key="13"
+            />
+            <img
+              src="../../src/assets/page1_15.jpg"
+              class="page-image-1"
+              key="14"
+              v-if="index == 17"
+            />
+            <img
+              src="../../src/assets/page1_16.jpg"
+              class="page-image-1"
+              key="15"
+              v-if="index > 17 && index < 25"
+            />
+          </transition-group>
         </div>
       </div>
       
@@ -143,6 +161,9 @@ export default {
   data() {
     return {
       text,
+      image: [
+        {src: require("../assets/page1_2.png")}
+      ]
     };
   },
 };
@@ -161,6 +182,12 @@ export default {
   opacity: 0;
 }
 
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity .5s;
+}
 .page-container {
   position: relative;
   display: flex;
