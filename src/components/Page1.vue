@@ -53,16 +53,16 @@
               v-if="index == 0"
             />
             <img
-              src="../../src/assets/page1_2.png"
+              src="../../src/assets/1000_1.png"
               class="page-image-1"
               key="1"
-              v-if="false"
+              v-if="index == 1"
             />
             <img
-              src="../../src/assets/page1_3.png"
+              src="../../src/assets/1000_2.png"
               class="page-image-1"
               key="2"
-              v-if="false"
+              v-if="index == 2"
             />
             <img
               src="../../src/assets/page1_4.png"
@@ -73,74 +73,74 @@
             <img
               src="../../src/assets/page1_5.png"
               class="page-image-1"
-              v-if="index == 4 || index == 5"
+              v-if="index > 4 && index < 10"
               key="4"
             />
             <img
-              src="../../src/assets/page1_6.png"
+              src="../../src/assets/1000_3.png"
               class="page-image-1"
               key="5"
-              v-if="index == 6 || index == 7 || index == 8"
+              v-if="index == 10"
             />
             <img
-              src="../../src/assets/page1_7.png"
+              src="../../src/assets/1000_4.png"
               class="page-image-1"
               key="6"
-              v-if="false"
+              v-if="index == 11"
             />
             <img
-              src="../../src/assets/page1_8.png"
+              src="../../src/assets/1000_5.png"
               class="page-image-1"
-              v-if="false"
+              v-if="index == 12 || index == 13"
               key="7"
             />
             <img
-              src="../../src/assets/page1_9.png"
+              src="../../src/assets/1000_6.png"
               class="page-image-1"
               key="8"
-              v-if="false"
+              v-if="index == 14 || index == 15"
             />
             <img
               src="../../src/assets/page1_10.jpg"
               class="page-image-1"
-              v-if="false"
+              v-if="index == 16"
               key="9"
             />
             <img
               src="../../src/assets/page1_11.png"
               class="page-image-1"
-              v-if="false"
+              v-if="index == 17"
               key="10"
             />
             <img
               src="../../src/assets/page1_12.png"
               class="page-image-1"
-              v-if="false"
+              v-if="index == 18"
               key="11"
             />
             <img
               src="../../src/assets/page1_13.png"
               class="page-image-1"
-              v-if="false"
+              v-if="index == 19"
               key="12"
             />
             <img
               src="../../src/assets/page1_14.png"
               class="page-image-1"
-              v-if="false"
+              v-if="index == 20"
               key="13"
             />
             <img
               src="../../src/assets/page1_15.jpg"
               class="page-image-1"
               key="14"
-              v-if="false"
+              v-if="index == 21"
             />
             <img
               src="../../src/assets/page1_16.jpg"
               class="page-image-1"
               key="15"
-              v-if="false"
+              v-if="index > 21"
             />
           </transition-group>
         </div>
