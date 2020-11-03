@@ -73,7 +73,7 @@
             <img
               src="../../src/assets/page1_5.png"
               class="page-image-1"
-              v-if="index > 4 && index < 10"
+              v-if="index > 3 && index < 10"
               key="4"
             />
             <img
