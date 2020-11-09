@@ -3,7 +3,7 @@
     <div v-if="firstIn" class="start-comp">
       <kinesis-container class="parent">
         <kinesis-element class="start-title" type="depth" :strength="5">
-          Veil of Ignorance
+          무지의 베일
         </kinesis-element>
         <div class="start-button" @click="startTutorial">Start</div>
         <a class="login-button">Skip tutorial</a>

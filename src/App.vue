@@ -1,17 +1,30 @@
 <template>
   <div id="app" class="no-drag">
-    <Tutorial />
+    <Video v-if="index==0"/>
+    <Game v-if="index==1" />
   </div>
 </template>
 
 <script>
-import Tutorial from "./views/Tutorial.vue";
+import Video from "./views/Video.vue";
+import Game from "./views/Game.vue"
 
 export default {
   name: "App",
   components: {
-    Tutorial,
+    Video,
+    Game
   },
+  data() {
+    return {
+      index: 0
+    }
+  },
+  mounted() {
+    setTimeout(()=> {
+      this.index = 1
+    }, 30000)
+  }
 };
 </script>
 
