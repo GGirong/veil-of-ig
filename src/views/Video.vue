@@ -4,7 +4,7 @@
         <div class="video-subs" v-if="index==1">우리 사회에서 이루어지는 빈부, 나이, 젠더 등에 따른 차별에 대한 담론을 살펴보면<br/>'공정한 사회'라고 부르기엔 어려워 보입니다.</div>
         <div class="video-subs" v-if="index==2">그렇다면 이런 모든 사회 구성원에게 '공정한 사회'는 불가능한 것일까요?<br/>어떻게 하면 '공정한 사회'를 만들어나갈 수 있을까요?</div>
         <div class="video-wrapper">
-            <video autoplay loop playsinline preload="auto" class="" muted style="object-fit: cover;">
+            <video autoplay loop playsinline preload="auto" muted ref="videoRef" style="object-fit: cover;">
                 <source src="@/assets/exvideo.mp4">
             </video>
         </div>
@@ -29,6 +29,7 @@ export default {
     },
     mounted() {
         this.fullScreen()
+        this.$refs.videoRef.play()
         setTimeout(() => {
             this.index = 1
         }, 6000)
