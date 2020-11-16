@@ -1,6 +1,6 @@
 <template>
     <section class="responsive-videobg video-container">
-        <div class="intro-title">무지의 베일</div>
+        <div class="intro-title">무지의 장막</div>
         <div class="intro-btn" @click="start()">시작하기</div>
         <div class="video-wrapper">
             <video autoplay loop playsinline preload="auto" muted ref="videoRef" class="video">
