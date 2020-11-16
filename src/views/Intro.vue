@@ -1,11 +1,10 @@
 <template>
     <section class="responsive-videobg video-container">
-        <div class="video-subs" v-if="index==0">여러분은 우리 사회가 '공정한 사회'라고 생각하시나요?</div>
-        <div class="video-subs" v-if="index==1">우리 사회에서 이루어지는 빈부, 나이, 젠더 등에 따른 차별에 대한 담론을 살펴보면<br/>'공정한 사회'라고 부르기엔 어려워 보입니다.</div>
-        <div class="video-subs" v-if="index==2">그렇다면 이런 모든 사회 구성원에게 '공정한 사회'는 불가능한 것일까요?<br/>어떻게 하면 '공정한 사회'를 만들어나갈 수 있을까요?</div>
+        <div class="intro-title">무지의 베일</div>
+        <div class="intro-btn" @click="start()">시작하기</div>
         <div class="video-wrapper">
             <video autoplay loop playsinline preload="auto" muted ref="videoRef" class="video">
-                <source src="@/assets/exvideo.mp4">
+                <source src="@/assets/walking.mp4">
             </video>
         </div>
         <div class="video-overlay"></div>
@@ -25,20 +24,17 @@ export default {
     methods: {
         fullScreen() {
             document.documentElement.webkitRequestFullscreen();
+        },
+        start() {
+            this.end = true
+            setTimeout(() => {
+                this.$emit('click')
+            }, 2000)
+            
         }
     },
     mounted() {
         this.fullScreen()
-        this.$refs.videoRef.play()
-        setTimeout(() => {
-            this.index = 1
-        }, 6000)
-        setTimeout(() => {
-            this.index = 2
-        }, 17000)
-        setTimeout(() => {
-            this.end = true
-        }, 27000)
     }
 }
 </script>
@@ -71,7 +67,31 @@ export default {
     left: 0;
     position: absolute;
     mix-blend-mode: darken;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.88), rgba(0,0,0, 0.22));
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.88), rgba(0,0,0, 0.6));
+}
+.intro-title {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    z-index: 10;
+    color: white;
+    font-size: 10vw;
+    font-weight: 800;
+    transform: translate(-50%,-50%);
+}
+.intro-btn {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    color: white;
+    font-size: 2vw;
+    width: 18vw;
+    border: 1px solid white;
+    padding: 1.5vw;
+    border-radius: 2vw;
+    cursor: pointer;
 }
 .video-subs {
     position: absolute;

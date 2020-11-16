@@ -1,29 +1,36 @@
 <template>
   <div id="app" class="no-drag">
-    <Video v-if="index==0"/>
-    <Game v-if="index==1" />
+    <Intro v-if="index==0" @click="nextPage"/>
+    <Video v-if="index==1"/>
+    <Game v-if="index==2" />
   </div>
 </template>
 
 <script>
-import Video from "./views/Video.vue";
 import Game from "./views/Game.vue"
 
 export default {
   name: "App",
   components: {
-    Video,
-    Game
+    Video : () => import('@/views/Video'),
+    Game,
+    Intro  : () => import('@/views/Intro'),
   },
   data() {
     return {
       index: 0
     }
   },
-  mounted() {
-    setTimeout(()=> {
+  methods: {
+    nextPage() {
       this.index = 1
-    }, 30000)
+      setTimeout(()=> {
+        this.index = 2
+      }, 30000)
+    }
+  },
+  mounted() {
+    
   }
 };
 </script>
