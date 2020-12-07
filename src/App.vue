@@ -1,20 +1,21 @@
 <template>
   <div id="app" class="no-drag">
-    <Intro v-if="index==0" @click="nextPage"/>
-    <Video v-if="index==1"/>
-    <Game v-if="index==2" />
+    <Intro v-if="index==0" @click="nextPage" @togame="toGame"/>
+    <Guide v-if="index==1" @click="nextPage" @home="toHome"/>
+    <NewGame v-if="index==2"/>
   </div>
 </template>
 
 <script>
-import Game from "./views/Game.vue"
+import NewGame from "./views/NewGame.vue"
+import Guide from "./views/Guide.vue"
 
 export default {
   name: "App",
   components: {
-    Video : () => import('@/views/Video'),
-    Game,
     Intro  : () => import('@/views/Intro'),
+    Guide,
+    NewGame
   },
   data() {
     return {
@@ -23,10 +24,13 @@ export default {
   },
   methods: {
     nextPage() {
-      this.index = 1
-      setTimeout(()=> {
-        this.index = 2
-      }, 30000)
+      this.index++
+    },
+    toGame() {
+      this.index = 2
+    },
+    toHome() {
+      this.index = 0
     }
   },
   mounted() {
@@ -41,7 +45,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #fff;
 }
 .no-drag {
   -ms-user-select: none; 

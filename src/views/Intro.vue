@@ -1,15 +1,31 @@
 <template>
-    <section class="responsive-videobg video-container">
-        <div class="intro-title">무지의 장막</div>
-        <div class="intro-btn" @click="start()">시작하기</div>
-        <div class="video-wrapper">
-            <video autoplay loop playsinline preload="auto" muted ref="videoRef" class="video">
-                <source src="@/assets/walking.mp4">
-            </video>
+    <div class="intro-wrapper">
+        <div class="intro-container">
+            <div class="intro-title-container">
+                <img src="../assets/web-1-title.png" class="img-title"/>
+            </div>
+            <div class="intro-btn-1" @click="$emit('click')">
+                <img src="../assets/web-1-btn-1.png" class="img-btn-1"/>
+            </div>
+            <div class="intro-btn-2" @click="openModal()">
+                <img src="../assets/web-1-btn-2.png" class="img-btn-2"/>
+            </div>
+            <div class="modal-overlay" v-if="modal" @click="closeModal()">
+                <div class="modal-container">
+                    <div class="modal-content">
+                        <img src="../assets/web-1-modal.png" class="img-modal"/>
+                        <div class="modal-close" @click="closeModal()"></div>
+                        <div class="modal-cancel" @click="$emit('togame')"></div>
+                        <div class="modal-confirm" @click="$emit('click')"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="video-overlay"></div>
-        <div class="video-fade-out" v-if="end"></div>
-    </section>
+        <div class="footer">
+            <img src="../assets/web-footer.png"/>
+        </div>
+    </div>
+    
 </template>
 
 <script>
@@ -17,142 +33,144 @@
 export default {
     data() {
         return {
-            index: 0,
-            end: false
+            modal: false
         };
     },
     methods: {
-        fullScreen() {
-            document.documentElement.webkitRequestFullscreen();
+        openModal() {
+            this.modal = true
         },
-        start() {
-            this.end = true
-            setTimeout(() => {
-                this.$emit('click')
-            }, 2000)
-            
+        closeModal() {
+            this.modal = false
         }
     },
-    mounted() {
-        this.fullScreen()
-    }
 }
 </script>
 
-<style>
-.responsive-videobg {
-    background: none;
+<style scoped>
+.intro-wrapper {
     position: relative;
-    width: 100%;
-    overflow: hidden;
 }
-.video-container {
-    height: 100vh;
+.intro-title-container {
+    margin: 0 auto;
 }
-.video-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    overflow: hidden;
-    z-index: 0;
+.img-title {
+    margin-top: 3vw;
 }
-.video-overlay {
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    mix-blend-mode: darken;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.88), rgba(0,0,0, 0.6));
-}
-.intro-title {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    z-index: 10;
-    color: white;
-    font-size: 10vw;
-    font-weight: 800;
-    transform: translate(-50%,-50%);
-}
-.intro-btn {
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 10;
-    color: white;
-    font-size: 2vw;
-    width: 18vw;
-    border: 1px solid white;
-    padding: 1.5vw;
-    border-radius: 2vw;
+.intro-btn-1 {
+    margin: 0 auto;
     cursor: pointer;
 }
-.video-subs {
+.img-btn-1 {
+    margin-top: 18vw;
+}
+.intro-btn-2 {
+    margin: 0 auto;
+    cursor: pointer;
+}
+.intro-container {
+    position: relative;
+    background: url('../assets/web-1-bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    min-height: 1000px;
+}
+.modal-overlay {
     position: absolute;
-    font-size: 28px;
-    line-height: 40px;
-    padding: 15px;
-    top: 80%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, 0.6);
+}
+.modal-container {
+    width: 621px;
+    height: 579px;
+    position: absolute;
+    top: 50%;
     left: 50%;
-    z-index: 10;
-    background-color: black;
-    color: white;
     transform: translate(-50%,-50%);
 }
-.video-fade-out {
-    z-index: 5;
-    height: 100%;
+.modal-content {
+    position: relative;
     width: 100%;
-    top: 0;
-    left: 0;
+    height: 100%;
+}
+.modal-close {
+    width: 80px;
+    height: 80px;
     position: absolute;
-    background-color: black;
-    animation: fadein 3s;
-    -moz-animation: fadein 3s; /* Firefox */
-    -webkit-animation: fadein 3s; /* Safari and Chrome */
-    -o-animation: fadein 3s;
+    top: 30px;
+    right: 35px;
+    cursor: pointer;
 }
-@keyframes fadein {
-    from {
-        opacity: 0;
+.modal-cancel {
+    width: 300px;
+    height: 120px;
+    position: absolute;
+    bottom: 30px;
+    left: 25px;
+    cursor: pointer;
+}
+.modal-confirm {
+    width: 290px;
+    height: 120px;
+    position: absolute;
+    bottom: 30px;
+    left: 325px;
+    cursor: pointer;
+}
+.footer {
+    width: 100%;
+    background: #111114;
+}
+@media (max-width: 690px) {
+    .modal-container {
+        width: 90%;
+        height: auto;
     }
-    to {
-        opacity: 1;
+    .modal-close {
+        width: 15%;
+        height: 15%;
+        top: 10px;
+        right: 10px;
+    }
+    .modal-cancel {
+        width: 40%;
+        height: 50px;
+        left: 10%;
+        bottom: 8%;
+    }
+    .modal-confirm {
+        width: 40%;
+        height: 50px;
+        left: 55%;
+        bottom: 8%;
     }
 }
-@-moz-keyframes fadein { /* Firefox */
-    from {
-        opacity: 0;
+@media (max-width: 1000px) {
+    .intro-container {
+        min-height: 300px;
     }
-    to {
-        opacity: 1;
+    .intro-title-container {
+        width: 80%;
     }
-}
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
-        opacity: 0;
+    .img-title {
+        margin-top: 5vw;
     }
-    to {
-        opacity: 1;
+    .intro-btn-1 {
+        width: 60%;
+        margin: 0 auto;
     }
-}
-@-o-keyframes fadein { /* Opera */
-    from {
-        opacity: 0;
+    .img-btn-1 {
+        margin-top: 40%;
     }
-    to {
-        opacity: 1;
+    .intro-btn-2 {
+        width: 60%;
+        margin: 0 auto;
     }
 }
-.video {
-    object-fit: cover;
-    filter: grayscale(100%);
-    -webkit-filter:grayscale(100%);
-}
-</style>
+</style>>

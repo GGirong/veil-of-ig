@@ -3,7 +3,7 @@
         <section class="top-section">
             <div class="game-board">
                 <div class="board-title">{{index + 1}}라운드 정책</div>
-                <div class="board-policy" v-if="loading">세금 <span v-if="round.principles[index] > 0">+</span>{{round.principles[index]}}</div>
+                <div class="board-policy" v-if="loading" @click="openPolicyModal()">세금 <span v-if="round.principles[index] > 0">+</span>{{round.principles[index]}}</div>
                     <table class="game-score-container">
                         <th></th>
                         <th class="score-th-1">정책</th>
@@ -44,18 +44,20 @@
                         </tr>
                     </table>
             </div>
-            <div class="game-players">
-                <div class="circle-wrapper">
-                    <div class="circle deg-0 you"><span class="circle-text">당신<br/><span class="circle-status">{{poor_vote ? people_veil[0].result_point : people_veil[0].value == 'poor' ? '(거지)' : ''}}</span></span></div>
-                    <div class="circle deg-36" @click="poorVote(1)"><span class="circle-text">{{ poor_vote ? people_veil[1].value == 'normal' ? '서민' : people_veil[1].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[1].value == 'normal' ? '서민' : '' : people_veil[1].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[1].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[1].result_point : ''}}</span></span></div>
-                    <div class="circle deg-72" @click="poorVote(2)"><span class="circle-text">{{ poor_vote ? people_veil[2].value == 'normal' ? '서민' : people_veil[2].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[2].value == 'normal' ? '서민' : '' : people_veil[2].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[2].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[2].result_point : ''}}</span></span></div>
-                    <div class="circle deg-108" @click="poorVote(3)"><span class="circle-text">{{ poor_vote ? people_veil[3].value == 'normal' ? '서민' : people_veil[3].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[3].value == 'normal' ? '서민' : '' : people_veil[3].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[3].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[3].result_point : ''}}</span></span></div>
-                    <div class="circle deg-144" @click="poorVote(4)"><span class="circle-text">{{ poor_vote ? people_veil[4].value == 'normal' ? '서민' : people_veil[4].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[4].value == 'normal' ? '서민' : '' : people_veil[4].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[4].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[4].result_point : ''}}</span></span></div>
-                    <div class="circle deg-180" @click="poorVote(5)"><span class="circle-text">{{ poor_vote ? people_veil[5].value == 'normal' ? '서민' : people_veil[5].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[5].value == 'normal' ? '서민' : '' : people_veil[5].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[5].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[5].result_point : ''}}</span></span></div>
-                    <div class="circle deg-216" @click="poorVote(6)"><span class="circle-text">{{ poor_vote ? people_veil[6].value == 'normal' ? '서민' : people_veil[6].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[6].value == 'normal' ? '서민' : '' : people_veil[6].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[6].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[6].result_point : ''}}</span></span></div>
-                    <div class="circle deg-252" @click="poorVote(7)"><span class="circle-text">{{ poor_vote ? people_veil[7].value == 'normal' ? '서민' : people_veil[7].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[7].value == 'normal' ? '서민' : '' : people_veil[7].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[7].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[7].result_point : ''}}</span></span></div>
-                    <div class="circle deg-288" @click="poorVote(8)"><span class="circle-text">{{ poor_vote ? people_veil[8].value == 'normal' ? '서민' : people_veil[8].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[8].value == 'normal' ? '서민' : '' : people_veil[8].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[8].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[8].result_point : ''}}</span></span></div>
-                    <div class="circle deg-324" @click="poorVote(9)"><span class="circle-text">{{ poor_vote ? people_veil[9].value == 'normal' ? '서민' : people_veil[9].value == 'rich' ? '부자' : '거지' : round_end ? round.round_result > 0 ? people_veil[9].value == 'normal' ? '서민' : '' : people_veil[9].value == 'rich' ? '부자' : '' : result_timeout ? people_veil[9].vote[index] ? 'O' : 'X' : ''}}<br/><span class="circle-status">{{poor_vote ? people_veil[9].result_point : ''}}</span></span></div>
+            <div class="game-players" v-if="loading">
+                <div class="game-players-section">
+                    <Character :vote="people_veil[0].vote[index]" :value="people_veil[0].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout" />
+                    <Character :vote="people_veil[1].vote[index]" :value="people_veil[1].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                    <Character :vote="people_veil[2].vote[index]" :value="people_veil[2].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                    <Character :vote="people_veil[3].vote[index]" :value="people_veil[3].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                    <Character :vote="people_veil[4].vote[index]" :value="people_veil[4].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                </div>
+                <div class="game-players-section">
+                    <Character :vote="people_veil[5].vote[index]" :value="people_veil[5].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                    <Character :vote="people_veil[6].vote[index]" :value="people_veil[6].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                    <Character :vote="people_veil[7].vote[index]" :value="people_veil[7].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                    <Character :vote="people_veil[8].vote[index]" :value="people_veil[8].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
+                    <Character :vote="people_veil[9].vote[index]" :value="people_veil[9].value" :round="round_end" :poorvote="poor_vote" :result="result_timeout"/>
                 </div>
             </div>
         </section>
@@ -65,11 +67,37 @@
                 <button class="game-cancel-button" v-if="!cal_end" @click="cancelP()">반대</button>
             </div>
         </section>
+        <ValueModal 
+        v-if="valueModal"
+        :poor="poor"
+        @close="closeModal()"
+        />
+        <PolicyModal 
+        v-if="policyModal"
+        :policy="round.principles[index]"
+        @close="closePModal()"
+        />
+        <ResultModal
+        v-if="resultModal"
+        :policy="policy"
+        @close="closePModal()"
+        />
     </div>
 </template>
 
 <script>
+import ValueModal from '../components/ValueModal'
+import PolicyModal from '../components/PolicyModal'
+import ResultModal from '../components/ResultModal'
+import Character from '../components/Character.vue'
+
 export default {
+    components: {
+        ValueModal,
+        PolicyModal,
+        ResultModal,
+        Character
+    },
     data() {
     return {
         index: 0,
@@ -103,11 +131,34 @@ export default {
           normal: 0,
           poor: 0,
         }
-      }
+      },
+      valueModal: false,
+      policyModal: false,
+      resultModal: false,
+      poor: false,
+      policy: false
     }
 
   },
   methods: {
+      openValue() {
+          this.valueModal = true
+      },
+      openPolicyModal() {
+          this.policyModal = true
+      },
+      closeModal() {
+          this.valueModal = false
+          this.makePolicy()
+      },
+      closePModal() {
+          this.policyModal = false
+          this.resultModal = false
+      },
+      openRModal(policy) {
+          this.policy = policy
+          this.resultModal = true
+      },   
     makePeople() {
       let valueCopy = this.copyString(this.value_list)
       for(let i = 0; i < 10; i++) {
@@ -121,6 +172,13 @@ export default {
         veil.value = valueCopy.splice(this.randomNum(0, 9 - i), 1).toString()
         this.people_veil[i] = veil
       }
+      if(this.people_veil[0].value == 'poor') {
+            this.poor = true
+            this.valueModal = true
+        }
+        else {
+            this.valueModal = true
+        }
     },
     randomNum(lower, upper) {
       return Math.floor(Math.random() * (upper - lower + 1)) + lower;
@@ -159,6 +217,7 @@ export default {
             }
         }
         this.loading = true
+        this.policyModal = true
     },
     confirmP() {
         this.people_veil[0].vote[this.index] = true
@@ -186,13 +245,16 @@ export default {
           if(agree > disagree) {
             this.round.vote_result[this.index] = true
             this.round.round_result += this.round.principles[this.index]
-            alert(this.index+1 + " 라운드의 정책은 통과되었습니다.")
+            this.openRModal(true)
           }
           else {
             this.round.vote_result[this.index] = false
-            alert(this.index+1 + " 라운드의 정책은 통과되지 못했습니다.")
+            this.openRModal(false)
           }
           this.round.round_end[this.index] = true
+          setTimeout(()=> {
+              this.closePModal()
+          }, 2000)
           setTimeout(()=> {
               this.result_timeout = false
               this.index++
@@ -201,7 +263,6 @@ export default {
                   this.calculateResult()
               }
               else {
-                alert(this.index+1 + " 라운드가 시작됩니다.")
                 this.makePolicy()
               }
           }, 5000)
@@ -509,13 +570,6 @@ export default {
   },
   mounted() {
     this.makePeople()
-    if(this.people_veil[0].value == 'poor') {
-        alert('당신의 직업은 거지입니다.')
-    }
-    else {
-        alert('당신의 직업은 거지가 아닙니다.')
-    }
-    this.makePolicy()
   }
 }
 </script>
@@ -535,12 +589,17 @@ export default {
     height: 20vh;
 }
 .game-board {
-    width: 40%;
+    width: 30%;
     padding-top: 5%;
 }
 .game-players {
-    width: 60%;
+    width: 70%;
     padding-top: 7%;
+}
+.game-players-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 .circle-wrapper {
     width: 40%;
@@ -559,12 +618,12 @@ export default {
     margin-bottom: 50px;
 }
 .game-score-container {
-    margin-left: 180px;
+    margin-left: 100px;
     font-size: 18px;
     line-height: 40px;
 }
 .game-total-container {
-    margin-left: 180px;
+    margin-left: 100px;
     margin-top: 30px;
     font-size: 17px;
     line-height: 28px;
