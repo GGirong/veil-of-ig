@@ -2,7 +2,7 @@
   <div id="app" class="no-drag">
     <Intro v-if="index==0" @click="nextPage" @togame="toGame"/>
     <Guide v-if="index==1" @click="nextPage" @home="toHome"/>
-    <NewGame v-if="index==2"/>
+    <NewGame v-if="index==2" @home="toHome"/>
   </div>
 </template>
 

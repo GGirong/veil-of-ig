@@ -68,7 +68,7 @@
                 <div class="modal-content">
                     <img src="../assets/web-2-modal.png" class="img-modal"/>
                     <div class="modal-close" @click="closeModal()"></div>
-                    <div class="modal-cancel" @click="$emit('togame')"></div>
+                    <div class="modal-cancel" @click="closeModal()"></div>
                     <div class="modal-confirm" @click="$emit('home')"></div>
                 </div>
             </div>
