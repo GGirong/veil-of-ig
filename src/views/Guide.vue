@@ -12,52 +12,52 @@
         </div>
         <div class="guide-content-container">
             <div class="content-container" v-if="index == 0">
-                <lazy-img src="../assets/web-2-1.jpg" class="img-main"/>
+                <img src="../assets/web-2-1.jpg" class="img-main"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-1-btn-1.png" class="img-btn" @click="pickChicken"/>
                     <img src="../assets/web-2-1-btn-2.png" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 1">
-                <lazy-img src="../assets/web-2-2.png" class="img-main" v-if="chicken"/>
-                <lazy-img src="../assets/web-2-2-1.png" class="img-main" v-if="!chicken"/>
+                <img src="../assets/web-2-2.png" class="img-main" v-if="chicken"/>
+                <img src="../assets/web-2-2-1.png" class="img-main" v-if="!chicken"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-2-btn.png" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 2">
-                <lazy-img src="../assets/web-2-3.png" class="img-main"/>
+                <img src="../assets/web-2-3.png" class="img-main"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-3-btn.png" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 3">
-                <lazy-img src="../assets/web-2-4.png" class="img-main"/>
+                <img src="../assets/web-2-4.png" class="img-main"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-4-btn.png" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 4">
-                <lazy-img src="../assets/web-2-6.png" class="img-main"/>
+                <img src="../assets/web-2-6.png" class="img-main"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-6-btn-1.png" class="img-btn" @click="next"/>
                     <img src="../assets/web-2-6-btn-2.png" class="img-btn" @click="iKnow"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 5">
-                <lazy-img src="../assets/web-2-7.png" class="img-main"/>
+                <img src="../assets/web-2-7.png" class="img-main"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-7-btn.png" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 6">
-                <lazy-img src="../assets/web-2-5.png" class="img-main"/>
+                <img src="../assets/web-2-5.png" class="img-main"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-5-btn.png" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 7">
-                <lazy-img src="../assets/web-2-8.png" class="img-main"/>
+                <img src="../assets/web-2-8.png" class="img-main"/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-8-btn.png" class="img-btn" @click="next"/>
                 </div>
