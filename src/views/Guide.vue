@@ -12,7 +12,7 @@
         </div>
         <div class="guide-content-container">
             <div class="content-container" v-if="index == 0">
-                <img src="../assets/web-2-1.png" class="img-main"/>
+                <img src="../assets/web-2-1.jpg" class="img-main" v-img-lazy-loading/>
                 <div class="content-btn-container">
                     <img src="../assets/web-2-1-btn-1.png" class="img-btn" @click="pickChicken"/>
                     <img src="../assets/web-2-1-btn-2.png" class="img-btn" @click="next"/>

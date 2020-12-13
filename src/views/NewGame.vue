@@ -40,11 +40,11 @@
         </div>
         <div class="newgame-modal-container" v-if="policy">
             <div class="newgame-modal-content">
-                <img src="../assets/web-3-policy-1.png" class="img-policy" v-if="roundCount == 0"/>
-                <img src="../assets/web-3-policy-2.png" class="img-policy" v-if="roundCount == 1"/>
-                <img src="../assets/web-3-policy-3.png" class="img-policy" v-if="roundCount == 2"/>
-                <img src="../assets/web-3-policy-4.png" class="img-policy" v-if="roundCount == 3"/>
-                <img src="../assets/web-3-policy-5.png" class="img-policy" v-if="roundCount == 4"/>
+                <img src="../assets/web-3-policy-1.png" class="img-policy" v-if="roundCount == 0" v-img-lazy-loading/>
+                <img src="../assets/web-3-policy-2.png" class="img-policy" v-if="roundCount == 1" v-img-lazy-loading/>
+                <img src="../assets/web-3-policy-3.png" class="img-policy" v-if="roundCount == 2" v-img-lazy-loading/>
+                <img src="../assets/web-3-policy-4.png" class="img-policy" v-if="roundCount == 3" v-img-lazy-loading/>
+                <img src="../assets/web-3-policy-5.png" class="img-policy" v-if="roundCount == 4" v-img-lazy-loading/>
                 <div class="newgame-modal-close" @click="closeModal()"></div>
                 <div class="newgame-modal-confirm" @click="vote(true)"></div>
                 <div class="newgame-modal-cancel" @click="vote(false)"></div>

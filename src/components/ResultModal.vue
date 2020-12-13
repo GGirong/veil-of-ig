@@ -2,7 +2,7 @@
     <div class="result-modal-overlay">
         <div class="result-modal-container">
             <div class="result-modal-content" v-if="loading">
-                <img src="../assets/web-compo-modal.png"/>
+                <img src="../assets/web-compo-modal.png" v-img-lazy-loading/>
                 <div class="result-modal-close" @click="$emit('confirm')"></div>
                 <div class="result-modal-confirm" @click="$emit('confirm')"></div>
                 <div class="result-modal-confirm-vote" >
