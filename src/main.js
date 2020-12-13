@@ -9,8 +9,9 @@ import VueKinesis from "vue-kinesis";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
-require('./directives');
+import VueLazyImageLoading from 'vue-lazy-image-loading'
+ 
+Vue.use(VueLazyImageLoading)
 
 library.add(faArrowLeft);
 
