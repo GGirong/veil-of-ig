@@ -45,7 +45,7 @@
                 <lazy-img src="https://i.ibb.co/wWwXC04/web-3-policy-3.png" class="img-policy" v-if="roundCount == 2"/>
                 <lazy-img src="https://i.ibb.co/gTNHT1H/web-3-policy-4.png" class="img-policy" v-if="roundCount == 3"/>
                 <lazy-img src="https://i.ibb.co/DMCCKX5/web-3-policy-5.png" class="img-policy" v-if="roundCount == 4"/>
-                <div class="newgame-modal-close" @click="closeModal()"></div>
+                <div class="newgame-modal-close" @click="closePmodal()"></div>
                 <div class="newgame-modal-confirm" @click="vote(true)"></div>
                 <div class="newgame-modal-cancel" @click="vote(false)"></div>
             </div>
@@ -60,25 +60,48 @@
                 </div>
             </div>
         </div>
+        <div class="modal-overlay" v-if="guidemodal">
+            <div class="guide-modal-container">
+                <div class="modal-content">
+                    <img src="../assets/web-3-guide-modal.png" class="img-modal"/>
+                    <img src="../assets/web-3-guide-1.png" class="guide-modal-img" v-if="guideIndex==0"/>
+                    <img src="../assets/web-3-guide-2.png" class="guide-modal-img" v-if="guideIndex==1"/>
+                    <img src="../assets/web-3-guide-3.png" class="guide-modal-img" v-if="guideIndex==2"/>
+                    <img src="../assets/web-3-guide-4.png" class="guide-modal-img" v-if="guideIndex==3"/>
+                    <img src="../assets/web-3-guide-5.png" class="guide-modal-img" v-if="guideIndex==4"/>
+                    <div class="guide-modal-confirm" @click="guideNext()"></div>
+                </div>
+            </div>
+        </div>
         <ResultModal 
         v-if="result"
         :vote="tempVote"
         :value="value"
         @confirm="confirmResult"/>
+        <GameOverModal 
+        v-if="over"
+        :value="value"
+        @restart="restart"
+        @done="$emit('click')"
+        />
     </div>
 </template>
 
 <script>
 import ResultModal from '../components/ResultModal'
+import GameOverModal from '../components/GameOverModal'
 
 export default {
     components: {
-        ResultModal
+        ResultModal,
+        GameOverModal
     },
     data() {
         return {
             policy: false,
             modal: false,
+            guidemodal: true,
+            guideIndex: 0,
             round: [
                 {
                     done: false,
@@ -108,10 +131,18 @@ export default {
                 rich: 0,
                 normal: 0
             },
-            tempVote: 0
+            tempVote: 0,
+            over: false
         }
     },
     methods: {
+        guideNext() {
+            this.guideIndex++
+            if(this.guideIndex == 5) {
+                this.guidemodal = false
+                this.policy = true
+            }
+        },
         openModal() {
             this.modal = true
         },
@@ -120,11 +151,28 @@ export default {
         },
         closeModal() {
             this.modal = false
+        },
+        closePmodal() {
             this.policy = false
         },
         confirmResult() {
             this.roundCount++
-            this.result = false
+            if(this.roundCount == 5) {
+                this.result = false
+                this.over = true
+            }
+            else {
+                this.result = false
+                this.policy = true
+            }
+            
+        },
+        restart() {
+            this.over = false
+            this.roundCount = 0
+            for(let i of this.round) {
+                i.vote = 0
+            }
             this.policy = true
         },
         vote(vote) {
@@ -132,12 +180,12 @@ export default {
             if(vote) {
                 this.round[this.roundCount].vote = (Math.floor(Math.random() * 10) * 10) + 10
                 this.tempVote = this.round[this.roundCount].vote
-                this.round[this.roundCount].vote = this.round[this.roundCount].vote + '%'
+                this.round[this.roundCount].vote = this.round[this.roundCount].vote - 1 + '%'
             }
             else {
                 this.round[this.roundCount].vote = (Math.floor(Math.random() * 10) * 10)
                 this.tempVote = this.round[this.roundCount].vote
-                this.round[this.roundCount].vote = this.round[this.roundCount].vote + '%'
+                this.round[this.roundCount].vote = this.round[this.roundCount].vote - 1 + '%'
             }
             if(this.roundCount == 0) {
                 if(this.tempVote > 39) {
@@ -288,6 +336,36 @@ export default {
     width: 17.7%;
     cursor: pointer;
 }
+.guide-modal-container {
+    position: absolute;
+    width: 37.81%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.guide-modal-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.guide-modal-close {
+    position: absolute;
+    top: 2%;
+    right: 4%;
+    width: 20%;
+    height: 15%;
+    cursor: pointer;
+}
+.guide-modal-confirm {
+    position: absolute;
+    bottom: 7%;
+    left: 30%;
+    width: 41%;
+    height: 14%;
+    cursor: pointer;
+}
 .newgame-modal-container {
     position: absolute;
     width: 30%;
@@ -308,6 +386,7 @@ export default {
     width: 20%;
     height: 15%;
     cursor: pointer;
+    z-index: 5;
 }
 .newgame-modal-confirm {
     position: absolute;
@@ -316,6 +395,7 @@ export default {
     width: 40%;
     height: 15%;
     cursor: pointer;
+    z-index: 5;
 }
 .newgame-modal-cancel {
     position: absolute;
@@ -324,6 +404,7 @@ export default {
     width: 40%;
     height: 15%;
     cursor: pointer;
+    z-index: 5;
 }
 .modal-overlay {
     position: absolute;
@@ -371,6 +452,9 @@ export default {
     cursor: pointer;
 }
 @media (max-width: 690px) {
+    .guide-modal-container {
+        width: 90%;
+    }
     .modal-container {
         width: 90%;
         height: auto;
@@ -395,6 +479,9 @@ export default {
     }
 }
 @media (min-width: 601px) and (max-width:1000px) {
+    .guide-modal-container {
+        width: 60%;
+    }
     .newgame-modal-container {
         width: 40%;
     }

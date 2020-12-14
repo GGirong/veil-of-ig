@@ -2,20 +2,23 @@
   <div id="app" class="no-drag">
     <Intro v-if="index==0" @click="nextPage" @togame="toGame"/>
     <Guide v-if="index==1" @click="nextPage" @home="toHome"/>
-    <NewGame v-if="index==2" @home="toHome"/>
+    <NewGame v-if="index==2" @home="toHome" @click="nextPage"/>
+    <Outro v-if="index==3" @home="toHome"/>
   </div>
 </template>
 
 <script>
 import NewGame from "./views/NewGame.vue"
 import Guide from "./views/Guide.vue"
+import Outro from './views/Outro.vue'
 
 export default {
   name: "App",
   components: {
     Intro  : () => import('@/views/Intro'),
     Guide,
-    NewGame
+    NewGame,
+    Outro
   },
   data() {
     return {

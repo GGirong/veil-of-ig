@@ -78,6 +78,7 @@ export default {
     top: 10px;
     right: 35px;
     cursor: pointer;
+    z-index: 5;
 }
 .result-modal-confirm {
     width: 290px;
@@ -86,31 +87,37 @@ export default {
     bottom: 25px;
     left: 160px;
     cursor: pointer;
+    z-index: 5;
 }
 .result-modal-confirm-vote {
     position: absolute;
     top: 123px;
     left: 165px;
+    z-index: 5;
 }
 .result-modal-cancel-vote {
     position: absolute;
     top: 126px;
     left: 420px;
+    z-index: 5;
 }
 .reulst-modal-poor {
     position: absolute;
     bottom: 145px;
-    left: 95px
+    left: 95px;
+    z-index: 5;
 }
 .result-modal-normal {
     position: absolute;
     bottom: 145px;
-    left: 265px
+    left: 265px;
+    z-index: 5;
 }
 .result-modal-rich {
     position: absolute;
     bottom: 145px;
-    left: 428px
+    left: 428px;
+    z-index: 5;
 }
 @media (max-width: 690px) {
     .result-modal-container {

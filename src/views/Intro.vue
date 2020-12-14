@@ -21,9 +21,12 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <img src="../assets/web-footer.png"/>
-        </div>
+        
+        <a href="http://www.hivcdgw2020.com/themediumspace" >
+            <div class="footer">
+                <img src="../assets/web-footer.png"/>
+            </div>
+        </a>
     </div>
     
 </template>
