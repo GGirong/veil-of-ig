@@ -3,7 +3,8 @@
     <Intro v-if="index==0" @click="nextPage" @togame="toGame"/>
     <Guide v-if="index==1" @click="nextPage" @home="toHome"/>
     <NewGame v-if="index==2" @home="toHome" @click="nextPage"/>
-    <Outro v-if="index==3" @home="toHome"/>
+    <Outro v-if="index==3" @home="toHome" @click="nextPage"/>
+    <Credit v-if="index==4" @home="toHome"/>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import NewGame from "./views/NewGame.vue"
 import Guide from "./views/Guide.vue"
 import Outro from './views/Outro.vue'
+import Credit from './views/Credit.vue'
 
 export default {
   name: "App",
@@ -18,7 +20,8 @@ export default {
     Intro  : () => import('@/views/Intro'),
     Guide,
     NewGame,
-    Outro
+    Outro,
+    Credit
   },
   data() {
     return {

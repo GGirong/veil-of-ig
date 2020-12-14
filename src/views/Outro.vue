@@ -12,54 +12,81 @@
         </div>
         <div class="guide-content-container">
             <div class="content-container" v-if="index == 0">
-                <img src="../assets/web-2-1.jpg" class="img-main"/>
+                <img src="../assets/web-4-1.jpg" class="img-main"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-1-btn-1.png" class="img-btn" @click="pickChicken"/>
-                    <img src="../assets/web-2-1-btn-2.png" class="img-btn" @click="next"/>
+                    <img src="../assets/web-4-1-btn-1.jpg" class="img-btn" @click="pickNo"/>
+                    <img src="../assets/web-4-1-btn-2.jpg" class="img-btn" @click="pickNoNo"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 1">
-                <img src="../assets/web-2-2.jpg" class="img-main" v-if="chicken"/>
-                <img src="../assets/web-2-2-1.png" class="img-main" v-if="!chicken"/>
+                <img src="../assets/web-4-2-1.jpg" class="img-main" v-if="!no"/>
+                <img src="../assets/web-4-2-2.jpg" class="img-main" v-if="no"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-2-btn.png" class="img-btn" @click="next"/>
+                    <img src="../assets/web-4-2-btn.jpg" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 2">
-                <img src="../assets/web-2-3.jpg" class="img-main"/>
+                <img src="../assets/web-4-3.jpg" class="img-main"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-3-btn.png" class="img-btn" @click="next"/>
+                    <img src="../assets/web-4-3-btn.jpg" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 3">
-                <img src="../assets/web-2-4.jpg" class="img-main"/>
+                <img src="../assets/web-4-4.jpg" class="img-main"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-4-btn.png" class="img-btn" @click="next"/>
+                    <img src="../assets/web-4-4-btn-1.jpg" class="img-btn" @click="pickRich"/>
+                    <img src="../assets/web-4-4-btn-2.jpg" class="img-btn" @click="pickPoor"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 4">
-                <img src="../assets/web-2-5.jpg" class="img-main"/>
+                <img src="../assets/web-4-5-1-1.jpg" class="img-main" v-if="poor"/>
+                <img src="../assets/web-4-5-2-1.jpg" class="img-main" v-if="rich"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-6-btn-1.png" class="img-btn" @click="next"/>
-                    <img src="../assets/web-2-6-btn-2.png" class="img-btn" @click="iKnow"/>
+                    <img src="../assets/web-4-5-1-btn.jpg" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 5">
-                <img src="../assets/web-2-6.jpg" class="img-main"/>
+                <img src="../assets/web-4-5-1-2.jpg" class="img-main" v-if="poor"/>
+                <img src="../assets/web-4-5-2-2.jpg" class="img-main" v-if="rich"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-7-btn.png" class="img-btn" @click="next"/>
+                    <img src="../assets/web-4-5-2-btn-1.jpg" class="img-btn" @click="another"/>
+                    <img src="../assets/web-4-5-2-btn-2.jpg" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 6">
-                <img src="../assets/web-2-7.jpg" class="img-main"/>
+                <img src="../assets/web-4-6.jpg" class="img-main"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-5-btn.png" class="img-btn" @click="next"/>
+                    <img src="../assets/web-4-6-btn.jpg" class="img-btn" @click="next"/>
                 </div>
             </div>
             <div class="content-container" v-if="index == 7">
-                <img src="../assets/web-2-8.jpg" class="img-main"/>
+                <img src="../assets/web-4-7.jpg" class="img-main"/>
                 <div class="content-btn-container">
-                    <img src="../assets/web-2-8-btn.png" class="img-btn" @click="next"/>
+                    <img src="../assets/web-4-7-btn.jpg" class="img-btn" @click="next"/>
+                </div>
+            </div>
+            <div class="content-container" v-if="index == 8">
+                <img src="../assets/web-4-8.jpg" class="img-main"/>
+                <div class="content-btn-container">
+                    <img src="../assets/web-4-8-btn.jpg" class="img-btn" @click="next"/>
+                </div>
+            </div>
+            <div class="content-container" v-if="index == 9">
+                <img src="../assets/web-4-9.jpg" class="img-main"/>
+                <div class="content-btn-container">
+                    <img src="../assets/web-4-9-btn.jpg" class="img-btn" @click="next"/>
+                </div>
+            </div>
+            <div class="content-container" v-if="index == 10">
+                <img src="../assets/web-4-10.jpg" class="img-main"/>
+                <div class="content-btn-container">
+                    <img src="../assets/web-4-10-btn.jpg" class="img-btn" @click="next"/>
+                </div>
+            </div>
+            <div class="content-container" v-if="index == 11">
+                <img src="../assets/web-4-11.jpg" class="img-main"/>
+                <div class="content-btn-container">
+                    <img src="../assets/web-4-11-btn.jpg" class="img-btn" @click="next"/>
                 </div>
             </div>
         </div>
@@ -82,7 +109,9 @@ export default {
     data() {
         return {
             index: 0,
-            chicken: false,
+            no: false,
+            rich: true,
+            poor: false,
             modal: false
         };
     },
@@ -93,16 +122,42 @@ export default {
         closeModal() {
             this.modal = false
         },
-        pickChicken() {
+        pickNo() {
             this.index++
-            this.chicken = true
+            this.no = true
         },
-        iKnow() {
-            this.index = 7
+        pickNoNo() {
+            this.index++
+            this.no = false
+        },
+        pickRich() {
+            this.index++
+            if(this.poor) {
+                this.poor = false
+            }
+            this.rich = true
+        },
+        pickPoor() {
+            this.index++
+            if(this.rich) {
+                this.rich = false
+            }
+            this.poor = true
+        },
+        another() {
+            if(this.rich) {
+                this.rich = false
+                this.poor = true
+            }
+            else {
+                this.poor = false
+                this.rich = true
+            }
+            this.index = 3
         },
         next() {
             this.index++
-            if(this.index == 8) {
+            if(this.index == 12) {
                 this.$emit('click')
             }
         },
